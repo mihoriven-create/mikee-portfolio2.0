@@ -454,9 +454,11 @@ html.intro-seen {
 
 /* ───────────────────────── Signal path (hero figure) ───────────────────────── */
 
-.signal-track {
+/* Rail from step 1 to step 6. Clipped horizontally so the pulse's tail never shows
+   before step 1 or past step 6; vertical overflow stays visible for the glow. */
+.signal-rail {
   container-type: inline-size;
-  position: relative;
+  clip-path: inset(-12px 0 -12px 0);
 }
 .signal-pulse {
   position: absolute;
@@ -493,7 +495,7 @@ html.intro-seen {
   }
   80%,
   100% {
-    transform: translateX(calc(100cqw + 72px));
+    transform: translateX(100cqw);
     opacity: 0;
   }
 }

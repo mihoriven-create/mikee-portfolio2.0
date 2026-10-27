@@ -55,17 +55,17 @@ export function Hero() {
           </span>
         </h1>
 
-        <div className="mt-10 grid gap-10 md:mt-14 md:grid-cols-12 md:gap-8">
+        <div className="mt-10 flex max-w-3xl flex-col gap-8 md:mt-14">
           {/* Painted at first render (no fade) so it can be the LCP element; the intro letterbox reveals it. */}
           <p
-            className="font-display text-[clamp(1.6rem,2.7vw,2.6rem)] font-semibold leading-[1.08] tracking-[-0.02em] md:col-span-6"
+            className="font-display text-[clamp(1.6rem,2.7vw,2.6rem)] font-semibold leading-[1.08] tracking-[-0.02em]"
             style={{ fontStretch: "100%" }}
           >
             I connect the tools a business runs on — and make them work as{" "}
             <span className="text-signal">one system.</span>
           </p>
 
-          <div className="flex flex-col gap-8 md:col-span-5 md:col-start-8">
+          <div className="flex flex-col gap-8">
             <p className="max-w-xl text-[1.0625rem] leading-relaxed text-fg-2">
               CRM administration in GoHighLevel and Zoho, SMS, email and AI workflow automation, API and
               webhook integrations, and custom web tools — built and maintained for US-based businesses.

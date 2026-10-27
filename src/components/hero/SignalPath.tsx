@@ -13,8 +13,8 @@ const steps = [
   { kind: "Action", label: "Remove from workflow" },
 ];
 
-// Seconds the pulse takes to cross the track (the 80% mark of the 6s pulse-travel cycle).
-// Each node lights as the pulse reaches its column.
+// Seconds the pulse takes to go from step 1 to step 6 (the 80% mark of the 6s pulse-travel cycle).
+// Each node lights as the pulse head reaches it.
 const TRAVEL = 4.8;
 
 export function SignalPath() {
@@ -31,12 +31,13 @@ export function SignalPath() {
 
   return (
     <figure ref={ref} className="hero-fade" style={{ "--d": "0.9s" } as React.CSSProperties}>
-      <div className="signal-track">
-        <span aria-hidden className="absolute inset-x-0 top-[13px] h-px bg-line-2 max-md:hidden" />
-        <div aria-hidden className="absolute inset-x-0 top-[13px] max-md:hidden">
+      <div className="relative">
+        {/* The rail runs from step 1's centre to step 6's centre (5 of 6 columns), so the pulse
+            starts and ends on a node instead of running past the last one. */}
+        <div aria-hidden className="signal-rail absolute left-[13px] top-[13px] h-px w-[calc(500%/6)] bg-line-2 max-md:hidden">
           <span className="signal-pulse" />
         </div>
-        <ol className="relative grid grid-cols-3 gap-y-6 md:grid-cols-6">
+        <ol className="relative z-10 grid grid-cols-3 gap-y-6 md:grid-cols-6">
           {steps.map((s, i) => (
             <li
               key={s.label}
@@ -44,7 +45,7 @@ export function SignalPath() {
             >
               <span
                 className="signal-node grid h-[27px] w-[27px] place-items-center rounded-full border border-line-2 bg-ink font-mono text-[10px] text-fg-2"
-                style={{ "--t": `${(i / steps.length) * 0.95 * TRAVEL}s` } as React.CSSProperties}
+                style={{ "--t": `${(i / (steps.length - 1)) * TRAVEL}s` } as React.CSSProperties}
               >
                 {i + 1}
               </span>
