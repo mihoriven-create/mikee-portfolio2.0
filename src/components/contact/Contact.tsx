@@ -49,7 +49,7 @@ export function Contact() {
       aria-labelledby="contact-title"
       className="relative isolate scroll-mt-[var(--nav-h)] overflow-hidden pb-16 pt-28 md:pt-44"
     >
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+      <div aria-hidden className="scene-fallback pointer-events-none absolute inset-0 -z-10">
         <div className="absolute bottom-[-30%] left-1/2 h-[80vh] w-[110vw] -translate-x-1/2 bg-[radial-gradient(closest-side,rgb(139_227_247/0.07),transparent)]" />
       </div>
 

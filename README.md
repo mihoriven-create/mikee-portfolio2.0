@@ -26,6 +26,22 @@ npm run lint
 - `src/components/motion/MotionProvider.tsx` — Lenis smooth scroll + one IntersectionObserver for `data-reveal`, `data-mask`, `data-draw`.
 - `public/work`, `public/logos`, `public/images` — screenshots and images carried over from the previous site.
 
+## Background scene (scroll-driven)
+
+`src/components/scene` renders a fixed WebGL environment behind the page that one scroll controller drives
+(architecture adapted from ThreeUI's Kage, MIT — see `THIRD_PARTY_NOTICES.md`).
+
+- `scenes.ts` — one entry per existing section (`selector`), each with camera keyframe(s) and environment
+  state (fog, light, grid, network, pulse rate, motion speed). Long sections get two keyframes so the camera
+  keeps drifting while you read. Edit this file to re-direct the story.
+- `engine.ts` — measures section anchors, converts scroll position to continuous progress, damps it, and
+  drives the camera rig, environment blend and bloom/composite. A readability ceiling in the composite keeps
+  backgrounds dark enough for the muted labels (≥ 4.5:1 over 90% of each frame).
+- `SceneCanvas.tsx` — loads three.js after the page is idle; skipped for `prefers-reduced-motion` and without
+  WebGL2, in which case the static hero/contact lighting (`.scene-fallback`) stays.
+- Phones and low-core devices render at 30 fps with a lighter bloom; a frame-time governor lowers resolution
+  if a device struggles. `window.__signalScene.progress` exposes the live progress for debugging.
+
 ## Motion rules
 
 - One easing (`--ease-out`, expo-out); durations 0.35 / 0.7 / 1.1s.

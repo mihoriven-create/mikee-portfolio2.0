@@ -29,7 +29,7 @@ export function Statement() {
   );
 
   return (
-    <section aria-label="Approach" className="shell py-28 md:py-44">
+    <section aria-label="Approach" data-scene="approach" className="shell py-28 md:py-44">
       <div className="grid gap-8 md:grid-cols-12">
         <p className="label md:col-span-2 md:pt-4">(Approach)</p>
         <p

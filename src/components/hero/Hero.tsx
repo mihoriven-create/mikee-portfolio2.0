@@ -24,7 +24,7 @@ export function Hero() {
       className="relative isolate overflow-hidden pt-[var(--nav-h)]"
     >
       {/* Lighting: one soft key light and a fading blueprint grid. */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+      <div aria-hidden className="scene-fallback pointer-events-none absolute inset-0 -z-10">
         <div className="blueprint absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_70%_60%_at_70%_30%,black,transparent_75%)]" />
         <div className="absolute -top-1/3 left-1/2 h-[90vh] w-[120vw] -translate-x-1/2 bg-[radial-gradient(closest-side,rgb(255_255_255/0.07),transparent)]" />
       </div>

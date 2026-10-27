@@ -55,8 +55,9 @@ html {
   scroll-padding-top: var(--nav-h);
 }
 
+/* <html> carries the page colour so the fixed scene canvas can sit between it and the content. */
 body {
-  background: var(--ink);
+  background: transparent;
   font-family: var(--font-sans);
   font-size: 1rem;
   line-height: 1.6;
@@ -64,6 +65,29 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   overflow-x: clip;
+}
+
+/* Scroll-driven background scene (components/scene). Fades in once WebGL is running;
+   the static hero/contact lighting is the fallback and steps aside when it does. */
+.scene-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.2s var(--ease-out);
+}
+html.has-scene .scene-canvas {
+  opacity: 1;
+}
+.scene-fallback {
+  transition: opacity 1.2s var(--ease-out);
+}
+html.has-scene .scene-fallback {
+  opacity: 0;
 }
 
 /* Static film grain: one fixed layer, never animated. */
